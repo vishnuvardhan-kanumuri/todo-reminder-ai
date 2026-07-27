@@ -1,0 +1,143 @@
+:root {
+  color-scheme: light dark;
+  --accent: #4f8cff;
+  --border: #d8dee9;
+  --bg-card: #ffffff;
+  --bg-page: #f5f6fa;
+  --text: #1c1f26;
+  --muted: #6b7280;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border: #3a3f4b;
+    --bg-card: #1e2129;
+    --bg-page: #14161c;
+    --text: #e8eaed;
+    --muted: #9aa1ac;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg-page);
+  color: var(--text);
+}
+
+header {
+  padding: 1.5rem 2rem 0.5rem;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+input, select, textarea, button {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 3rem;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+button:hover { opacity: 0.9; }
+
+ul { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.task:last-child { border-bottom: none; }
+
+.task-main { display: flex; flex-direction: column; gap: 0.2rem; }
+.task-title { font-weight: 600; }
+.task-title.completed { text-decoration: line-through; color: var(--muted); }
+.task-meta { font-size: 0.8rem; color: var(--muted); }
+
+.task-actions { display: flex; gap: 0.4rem; }
+.task-actions button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+}
+
+.color-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.banner {
+  background: #fff3cd;
+  color: #664d03;
+  border: 1px solid #ffe69c;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.hidden { display: none; }

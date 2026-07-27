@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo + Reminder</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Todo + Reminder</h1>
+    <div id="ai-status-banner" class="banner hidden"></div>
+  </header>
+
+  <main>
+    <section id="nl-entry-container" class="card hidden">
+      <!-- Phase B: natural-language task entry mounts here -->
+    </section>
+
+    <section class="card">
+      <h2>Add Task</h2>
+      <form id="task-form">
+        <input type="text" id="task-title" placeholder="Title" required />
+        <textarea id="task-description" placeholder="Description (optional)"></textarea>
+        <div class="row">
+          <label>Due <input type="datetime-local" id="task-due" /></label>
+          <label>Priority
+            <select id="task-priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+          <label>Category
+            <select id="task-category">
+              <option value="">None</option>
+            </select>
+          </label>
+        </div>
+        <div class="row">
+          <label>Tags <input type="text" id="task-tags" placeholder="comma,separated" /></label>
+          <label>Repeat
+            <select id="task-recurrence">
+              <option value="">None</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit">Add Task</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Categories</h2>
+      <form id="category-form" class="row">
+        <input type="text" id="category-name" placeholder="Category name" required />
+        <input type="color" id="category-color" value="#4f8cff" />
+        <button type="submit">Add Category</button>
+      </form>
+      <ul id="category-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Tasks</h2>
+      <div class="row">
+        <label>Filter
+          <select id="status-filter">
+            <option value="">All</option>
+            <option value="pending" selected>Pending</option>
+            <option value="completed">Completed</option>
+            <option value="archived">Archived</option>
+          </select>
+        </label>
+      </div>
+      <ul id="task-list"></ul>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
