@@ -34,6 +34,11 @@ const api = {
       body: JSON.stringify({ until }),
     }),
 
+  parseTask: (text) =>
+    request("/tasks/parse", { method: "POST", body: JSON.stringify({ text }) }),
+  categorizeTask: (id, apply) =>
+    request(`/tasks/${id}/categorize?apply=${apply}`, { method: "POST" }),
+
   listCategories: () => request("/categories"),
   createCategory: (data) =>
     request("/categories", { method: "POST", body: JSON.stringify(data) }),

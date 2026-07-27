@@ -1,4 +1,5 @@
 let categories = [];
+let aiEnabled = false;
 
 function fmt(dt) {
   if (!dt) return "";
@@ -19,12 +20,14 @@ async function refreshHealth() {
   const banner = document.getElementById("ai-status-banner");
   try {
     const health = await api.health();
-    if (!health.ai_enabled) {
+    aiEnabled = health.ai_enabled;
+    if (!aiEnabled) {
       banner.textContent =
         "AI features are unavailable (no ANTHROPIC_API_KEY configured). Manual task entry still works fully.";
       banner.classList.remove("hidden");
     } else {
       banner.classList.add("hidden");
+      renderNlEntry();
     }
   } catch {
     banner.textContent = "Could not reach the server.";
@@ -94,6 +97,7 @@ async function refreshTasks() {
       <div class="task-actions">
         ${t.status !== "completed" ? `<button class="complete" data-id="${t.id}">Done</button>` : ""}
         ${t.status !== "completed" ? `<button class="snooze" data-id="${t.id}">Snooze</button>` : ""}
+        ${aiEnabled && t.status !== "completed" ? `<button class="categorize" data-id="${t.id}">Suggest category</button>` : ""}
         <button class="delete" data-id="${t.id}">Delete</button>
       </div>
     `;
@@ -110,6 +114,17 @@ async function refreshTasks() {
     btn.addEventListener("click", async () => {
       await api.deleteTask(btn.dataset.id);
       await refreshTasks();
+    })
+  );
+  list.querySelectorAll(".categorize").forEach((btn) =>
+    btn.addEventListener("click", async () => {
+      try {
+        const suggestion = await api.categorizeTask(btn.dataset.id, true);
+        await refreshTasks();
+        alert(`Set to "${suggestion.category}" / ${suggestion.priority}${suggestion.reasoning ? `\n${suggestion.reasoning}` : ""}`);
+      } catch (err) {
+        alert(`Couldn't suggest a category: ${err.message}`);
+      }
     })
   );
   list.querySelectorAll(".snooze").forEach((btn) =>

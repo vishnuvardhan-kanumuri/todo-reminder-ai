@@ -12,6 +12,8 @@ dependencies = [
     "sqlmodel>=0.0.22",
     "pydantic-settings>=2.5",
     "python-dateutil>=2.9",
+    "anthropic>=0.40",
+    "tzdata; sys_platform == 'win32'",
 ]
 
 [project.optional-dependencies]

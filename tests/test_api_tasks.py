@@ -65,6 +65,17 @@ def test_category_crud(client):
     assert len(res.json()) == 0
 
 
+def test_parse_endpoint_503_without_api_key(client):
+    res = client.post("/api/tasks/parse", json={"text": "buy milk tomorrow"})
+    assert res.status_code == 503
+
+
+def test_categorize_endpoint_503_without_api_key(client):
+    task = client.post("/api/tasks", json={"title": "Something"}).json()
+    res = client.post(f"/api/tasks/{task['id']}/categorize")
+    assert res.status_code == 503
+
+
 def test_task_with_category_and_tags(client):
     category = client.post("/api/categories", json={"name": "Errands"}).json()
     res = client.post(

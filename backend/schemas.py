@@ -33,3 +33,21 @@ class TaskUpdate(BaseModel):
 
 class SnoozeRequest(BaseModel):
     until: datetime
+
+
+class ParseRequest(BaseModel):
+    text: str
+
+
+class TaskProposal(BaseModel):
+    title: str
+    due_datetime: datetime | None = None
+    priority: TaskPriority = TaskPriority.medium
+    tags: list[str] = []
+    category: str | None = None
+
+
+class CategorySuggestion(BaseModel):
+    category: str
+    priority: TaskPriority
+    reasoning: str | None = None
