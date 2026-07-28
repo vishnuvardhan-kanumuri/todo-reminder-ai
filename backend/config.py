@@ -8,8 +8,8 @@ class Settings(BaseSettings):
     timezone: str = "UTC"
 
     anthropic_api_key: str | None = None
-    ai_model_parse: str = "claude-haiku-4-5"
-    ai_model_categorize: str = "claude-haiku-4-5"
+    ai_model_parse: str = "claude-haiku-4-5-20251001"
+    ai_model_categorize: str = "claude-haiku-4-5-20251001"
     ai_model_digest: str = "claude-sonnet-5"
     ai_model_escalation: str = "claude-sonnet-5"
 

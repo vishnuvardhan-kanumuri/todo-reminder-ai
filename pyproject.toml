@@ -13,11 +13,15 @@ dependencies = [
     "pydantic-settings>=2.5",
     "python-dateutil>=2.9",
     "anthropic>=0.40",
+    "mcp>=2.0.0,<3",
     "tzdata; sys_platform == 'win32'",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "httpx>=0.27"]
+dev = ["pytest>=8.0", "httpx>=0.27", "mcp[cli]>=2.0.0,<3"]
+
+[project.scripts]
+todo-mcp-server = "backend.mcp_server.__main__:main"
 
 [tool.setuptools.packages.find]
 include = ["backend*"]
